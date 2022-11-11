@@ -21,8 +21,8 @@ type Args struct {
 	// Level defines the plugin log level.
 	Level string `envconfig:"PLUGIN_LOG_LEVEL"`
 
-	PathsGlob string `envconfig:"JUNIT_PATHS"`
-	Name string `envconfig:"JUNIT_NAME"`
+	PathsGlob string `envconfig:"PLUGIN_PATHS"`
+	ReportName string `envconfig:"PLUGIN_REPORT_NAME"`
 }
 
 // Exec executes the plugin.

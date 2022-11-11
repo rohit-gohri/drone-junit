@@ -3,19 +3,30 @@ type: docker
 name: default
 
 steps:
-- name: build
-  image: golang
-  commands:
-  - go build
-  - go test ./...
+  - name: build
+    image: golang
+    commands:
+      - go build
+      - go test ./...
 
-- name: publish
-  image: plugins/docker
-  settings:
-    repo: boringdownload/drone-junit
-    auto_tag: true
-    dockerfile: docker/Dockerfile
-    username:
-      from_secret: docker_username
-    password:
-      from_secret: docker_password
+  - name: test
+    image: golang
+    commands:
+      - go install github.com/jstemmer/go-junit-report/v2@latest
+      - go test -v 2>&1 ./... | go-junit-report -set-exit-code > report.xml
+
+  - name: junit-latest
+    image: boringdownload/drone-junit:latest
+    depends_on:
+      - test
+    settings:
+      paths: report.xml
+      report_name: my-tests
+
+  - name: junit-alpha
+    image: boringdownload/drone-junit:alpha
+    depends_on:
+      - test
+    settings:
+      paths: report.xml
+      report_name: my-tests
