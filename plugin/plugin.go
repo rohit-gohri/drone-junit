@@ -4,7 +4,15 @@
 
 package plugin
 
-import "context"
+import (
+	"context"
+	"errors"
+	"fmt"
+	"path/filepath"
+
+	"github.com/joshdk/go-junit"
+	"github.com/sirupsen/logrus"
+)
 
 // Args provides plugin execution arguments.
 type Args struct {
@@ -13,13 +21,41 @@ type Args struct {
 	// Level defines the plugin log level.
 	Level string `envconfig:"PLUGIN_LOG_LEVEL"`
 
-	// TODO replace or remove
-	Param1 string `envconfig:"PLUGIN_PARAM1"`
-	Param2 string `envconfig:"PLUGIN_PARAM2"`
+	PathsGlob string `envconfig:"JUNIT_PATHS"`
+	Name string `envconfig:"JUNIT_NAME"`
 }
 
 // Exec executes the plugin.
 func Exec(ctx context.Context, args Args) error {
-	// write code here
+	files, err := filepath.Glob(args.PathsGlob)
+
+	if err != nil {
+		logrus.Error(err)	
+		return errors.New("Invalid glob path")
+	}
+
+	if len(files) == 0 {
+		return errors.New("No files matched")
+	}
+
+	suites, err := junit.IngestFiles(files)
+
+	if err != nil {
+		logrus.Error(err)
+		return errors.New("Could not parse junit files")
+	}
+
+	for _, suite := range suites {
+		fmt.Println(suite.Name)
+		for _, test := range suite.Tests {
+			fmt.Printf("  %s\n", test.Name)
+			if test.Error != nil {
+				fmt.Printf("    %s: %v\n", test.Status, test.Error)
+			} else {
+				fmt.Printf("    %s\n", test.Status)
+			}
+		}
+	}
+
 	return nil
 }
