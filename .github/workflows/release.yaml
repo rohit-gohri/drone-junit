@@ -14,6 +14,14 @@ jobs:
         with:
           fetch-depth: 0
 
+      - uses: actions/setup-go@v3
+        with:
+          go-version: "^1.18.4"
+
+      - run: go version
+
+      - run: sh ./scripts/build.sh
+
       - name: Check if tag already exists
         run: |
           # Get version from package.json (head is needed because this also returns "version" npm script line)
