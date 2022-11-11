@@ -50,7 +50,7 @@ jobs:
 
       - name: Docker meta Alpha
         if: ${{ env.create_release == 'no' }}
-        id: meta-latest
+        id: meta-alpha
         uses: docker/metadata-action@v3
         with:
           # list of Docker images to use as base name for tags
@@ -89,6 +89,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
+          file: docker/Dockerfile
           platforms: linux/amd64,linux/arm64
           builder: ${{ steps.buildx.outputs.name }}
           push: true
@@ -100,8 +101,9 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
+          file: docker/Dockerfile
           platforms: linux/amd64,linux/arm64
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          tags: ${{ steps.meta-latest.outputs.tags }}
-          labels: ${{ steps.meta-latest.outputs.labels }}
+          tags: ${{ steps.meta-alpha.outputs.tags }}
+          labels: ${{ steps.meta-alpha.outputs.labels }}
