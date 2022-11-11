@@ -41,7 +41,7 @@ docker build -t boringdownload/drone-junit -f docker/Dockerfile .
 Execute the plugin from your current working directory:
 
 ```text
-docker run --rm -e JUNIT_PATHS="report.xml" -e JUNIT_NAME="drone-junit" \
+docker run --rm -e PLUGIN_PATHS="report.xml" -e PLUGIN_REPORT_NAME="drone-junit" \
   -e DRONE_COMMIT_SHA=8f51ad7884c5eb69c11d260a31da7a745e6b78e2 \
   -e DRONE_COMMIT_BRANCH=master \
   -e DRONE_BUILD_NUMBER=43 \

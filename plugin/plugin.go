@@ -8,7 +8,9 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"os"
 	"path/filepath"
+	"strings"
 
 	"github.com/joshdk/go-junit"
 	"github.com/sirupsen/logrus"
@@ -27,10 +29,25 @@ type Args struct {
 
 // Exec executes the plugin.
 func Exec(ctx context.Context, args Args) error {
+	globPath := args.PathsGlob
+	logrus.Debug("globPath: ", globPath)
+
+	cwd, err := os.Getwd()
+	logrus.Debug("CWD: ", cwd)
+
+	if err != nil {
+		logrus.Error(err)
+	}
+
+	if !strings.HasPrefix(globPath, "/") {
+		globPath = cwd + "/" + globPath
+	}
+	logrus.Debug("Final globPath: ", globPath)
+
 	files, err := filepath.Glob(args.PathsGlob)
 
 	if err != nil {
-		logrus.Error(err)	
+		logrus.Error(err)
 		return errors.New("Invalid glob path")
 	}
 
@@ -38,13 +55,17 @@ func Exec(ctx context.Context, args Args) error {
 		return errors.New("No files matched")
 	}
 
+	logrus.Debug("Files: ", files)
+	
 	suites, err := junit.IngestFiles(files)
-
+	
 	if err != nil {
 		logrus.Error(err)
 		return errors.New("Could not parse junit files")
 	}
 
+	fmt.Println("***Suites***")
+	
 	for _, suite := range suites {
 		fmt.Println(suite.Name)
 		for _, test := range suite.Tests {
