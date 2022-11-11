@@ -1,0 +1,13 @@
+{
+  "name": "drone-junit",
+  "version": "0.0.0",
+  "description": "Manage versioning via changesets",
+  "main": "index.js",
+  "repository": "https://github.com/rohit-gohri/drone-junit.git",
+  "author": "Rohit Gohri <code@rohit.page>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "@changesets/cli": "^2.25.2"
+  }
+}
