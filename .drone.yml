@@ -17,14 +17,14 @@ steps:
     image: golang
     commands:
       - go install github.com/jstemmer/go-junit-report/v2@latest
-      - go test -v 2>&1 ./... | go-junit-report -set-exit-code > report.xml
+      - go test -v 2>&1 ./... | go-junit-report -set-exit-code > testdata/live-report.xml
 
   - name: junit-latest
     image: boringdownload/drone-junit:latest
     depends_on:
       - test
     settings:
-      paths: report.xml
+      paths: testdata/*.xml
       report_name: my-tests
     when:
       branch:
@@ -35,5 +35,5 @@ steps:
     depends_on:
       - test
     settings:
-      paths: report.xml
+      paths: testdata/*.xml
       report_name: my-tests

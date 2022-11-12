@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites tests="5" errors="3">
+	<testsuite name="package/name/passing1" tests="1" failures="0" errors="0" id="0" hostname="hostname" time="0.100" timestamp="2022-01-01T00:00:00Z">
+		<properties>
+			<property name="go.version" value="1.0"></property>
+		</properties>
+		<testcase name="TestA" classname="package/name/passing1" time="0.100"></testcase>
+	</testsuite>
+	<testsuite name="package/name/passing2" tests="1" failures="0" errors="0" id="1" hostname="hostname" time="0.100" timestamp="2022-01-01T00:00:00Z">
+		<properties>
+			<property name="go.version" value="1.0"></property>
+		</properties>
+		<testcase name="TestB" classname="package/name/passing2" time="0.100"></testcase>
+	</testsuite>
+	<testsuite name="package/name/failing1" tests="1" failures="0" errors="1" id="2" hostname="hostname" time="0.000" timestamp="2022-01-01T00:00:00Z">
+		<properties>
+			<property name="go.version" value="1.0"></property>
+		</properties>
+		<testcase name="[build failed]" classname="package/name/failing1" time="0.000">
+			<error message="Build error"><![CDATA[failing1/failing_test.go:15: undefined: x]]></error>
+		</testcase>
+	</testsuite>
+	<testsuite name="package/name/failing2" tests="1" failures="0" errors="1" id="3" hostname="hostname" time="0.000" timestamp="2022-01-01T00:00:00Z">
+		<properties>
+			<property name="go.version" value="1.0"></property>
+		</properties>
+		<testcase name="[build failed]" classname="package/name/failing2" time="0.000">
+			<error message="Build error"><![CDATA[failing2/another_failing_test.go:20: undefined: y]]></error>
+		</testcase>
+	</testsuite>
+	<testsuite name="package/name/setupfailing1" tests="1" failures="0" errors="1" id="4" hostname="hostname" time="0.000" timestamp="2022-01-01T00:00:00Z">
+		<properties>
+			<property name="go.version" value="1.0"></property>
+		</properties>
+		<testcase name="[setup failed]" classname="package/name/setupfailing1" time="0.000">
+			<error message="Build error"><![CDATA[setupfailing1/failing_test.go:4: cannot find package "other/package" in any of:
+	/path/vendor (vendor tree)
+	/path/go/root (from $GOROOT)
+	/path/go/path (from $GOPATH)]]></error>
+		</testcase>
+	</testsuite>
+</testsuites>
