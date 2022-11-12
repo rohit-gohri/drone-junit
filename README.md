@@ -15,7 +15,7 @@ name: default
 
 steps:
 - name: run boringdownload/drone-junit plugin
-  image: boringdownload/drone-junit
+  image: boringdownload/drone-junit:v0
   pull: if-not-exists
   settings:
     param1: foo
