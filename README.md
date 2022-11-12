@@ -1,11 +1,13 @@
-A plugin to Drone plugin to create stest summaryy using plugin cards.
+# Drone Junit
 
-# Usage
+A Drone plugin to parse Junit test reports and create tests summary using [plugin cards](https://docs.drone.io/plugins/adaptive_cards/).
+
+## Usage
 
 The following settings changes this plugin's behavior.
 
-* param1 (optional) does something.
-* param2 (optional) does something different.
+* paths (required) - Pass a glob pattern to match all xml junit files
+* report_name (optional) - Customize the name of the report
 
 Below is an example `.drone.yml` that uses this plugin.
 
@@ -14,15 +16,24 @@ kind: pipeline
 name: default
 
 steps:
-- name: run boringdownload/drone-junit plugin
+
+# Run your tests here and generate report
+- name: tests
+  image: golang
+  commands:
+    - go install github.com/jstemmer/go-junit-report/v2@latest
+    - go test -v 2>&1 ./... | go-junit-report -set-exit-code > report.xml
+
+- name: junit-reports
   image: boringdownload/drone-junit:v0
-  pull: if-not-exists
   settings:
-    param1: foo
-    param2: bar
+    paths: report.xml
+    report_name: my-tests
 ```
 
-# Building
+## Development
+
+### Building
 
 Build the plugin binary:
 
@@ -36,7 +47,7 @@ Build the plugin image:
 docker build -t boringdownload/drone-junit -f docker/Dockerfile .
 ```
 
-# Testing
+### Testing
 
 Execute the plugin from your current working directory:
 
