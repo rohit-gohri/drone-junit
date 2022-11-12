@@ -10,25 +10,27 @@ import (
 	"io"
 	"io/ioutil"
 	"os"
+
+	"github.com/sirupsen/logrus"
 )
 
 type TestData struct {
-	failed int64
-	errored int64
-	skipped int64
-	passed int64
-	total int64
+	Failed int64 `json:"failed"`
+	Errored int64 `json:"errored"`
+	Skipped int64 `json:"skipped"`
+	Passed int64 `json:"passed"`
+	Total int64 `json:"total"`
 }
 
 type ReportData struct {
-	name string
-	tests TestData
-	time string
+	Name string `json:"name"`
+	Tests TestData `json:"tests"`
+	Time string `json:"time"`
 }
 
 type CardData struct {
-	name string
-	reports []ReportData 
+	Name string `json:"name"`
+	Reports []ReportData `json:"reports"`
 }
 
 func writeCard(path, schema string, card CardData) {
@@ -36,6 +38,9 @@ func writeCard(path, schema string, card CardData) {
 		"schema": schema,
 		"data":   card,
 	})
+
+	logrus.Debug("Card: ", string(data))
+
 	switch {
 	case path == "/dev/stdout":
 		writeCardTo(os.Stdout, data)

@@ -64,20 +64,20 @@ func Exec(ctx context.Context, args Args) error {
 	}
 
 	var card CardData
-	card.name = args.ReportName
-	card.reports = []ReportData{}
+	card.Name = args.ReportName
+	card.Reports = []ReportData{}
 
 	for _, suite := range suites {
-		card.reports = append(card.reports, ReportData{
-			name: suite.Name,
-			tests: TestData{
-				passed: int64(suite.Totals.Passed),
-				failed: int64(suite.Totals.Failed),
-				errored: int64(suite.Totals.Error),
-				skipped: int64(suite.Totals.Skipped),
-				total: int64(suite.Totals.Tests),
+		card.Reports = append(card.Reports, ReportData{
+			Name: suite.Name,
+			Tests: TestData{
+				Passed: int64(suite.Totals.Passed),
+				Failed: int64(suite.Totals.Failed),
+				Errored: int64(suite.Totals.Error),
+				Skipped: int64(suite.Totals.Skipped),
+				Total: int64(suite.Totals.Tests),
 			},
-			time: suite.Totals.Duration.String(),
+			Time: suite.Totals.Duration.String(),
 		})
 	}
 
