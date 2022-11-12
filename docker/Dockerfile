@@ -6,5 +6,7 @@ ENV GODEBUG netdns=go
 
 COPY --from=alpine /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 
-ADD release/linux/amd64/plugin /bin/
+ARG TARGETOS TARGETARCH
+ADD release/$TARGETOS/$TARGETARCH/plugin /bin/
+
 ENTRYPOINT ["/bin/plugin"]

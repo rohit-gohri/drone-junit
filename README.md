@@ -1,5 +1,8 @@
 # Drone Junit
 
+[![Release](https://github.com/rohit-gohri/drone-junit/actions/workflows/release.yaml/badge.svg)](https://github.com/rohit-gohri/drone-junit/actions/workflows/release.yaml)
+[![Test Build](https://cloud.drone.io/api/badges/rohit-gohri/drone-junit/status.svg?ref=refs/heads/main)](https://cloud.drone.io/rohit-gohri/drone-junit)
+
 A Drone plugin to parse Junit test reports and create tests summary using [plugin cards](https://docs.drone.io/plugins/adaptive_cards/).
 
 ## Usage
