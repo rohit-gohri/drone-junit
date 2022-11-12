@@ -2,6 +2,10 @@ kind: pipeline
 type: docker
 name: default
 
+trigger:
+  event:
+    - push
+
 steps:
   - name: build
     image: golang
@@ -22,6 +26,9 @@ steps:
     settings:
       paths: report.xml
       report_name: my-tests
+    when:
+      branch:
+        - main
 
   - name: junit-alpha
     image: boringdownload/drone-junit:alpha
