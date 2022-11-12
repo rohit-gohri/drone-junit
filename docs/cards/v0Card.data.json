@@ -1,0 +1,25 @@
+{
+  "name": "Wohoo",
+  "reports": [
+    {
+      "name": "tt33",
+      "tests": {
+        "failed": 2,
+        "errored": 1,
+        "skipped": 0,
+        "passed": 35
+      },
+      "time": "450ms"
+    },
+    {
+      "name": "114v",
+      "tests": {
+        "failed": 1,
+        "errored": 4,
+        "skipped": 2,
+        "passed": 59
+      },
+      "time": "950ms"
+    }
+  ]
+}

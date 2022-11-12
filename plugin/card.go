@@ -12,7 +12,26 @@ import (
 	"os"
 )
 
-func writeCard(path, schema string, card interface{}) {
+type TestData struct {
+	failed int64
+	errored int64
+	skipped int64
+	passed int64
+	total int64
+}
+
+type ReportData struct {
+	name string
+	tests TestData
+	time string
+}
+
+type CardData struct {
+	name string
+	reports []ReportData 
+}
+
+func writeCard(path, schema string, card CardData) {
 	data, _ := json.Marshal(map[string]interface{}{
 		"schema": schema,
 		"data":   card,

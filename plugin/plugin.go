@@ -7,7 +7,6 @@ package plugin
 import (
 	"context"
 	"errors"
-	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
@@ -64,19 +63,25 @@ func Exec(ctx context.Context, args Args) error {
 		return errors.New("Could not parse junit files")
 	}
 
-	fmt.Println("***Suites***")
-	
+	var card CardData
+	card.name = args.ReportName
+	card.reports = []ReportData{}
+
 	for _, suite := range suites {
-		fmt.Println(suite.Name)
-		for _, test := range suite.Tests {
-			fmt.Printf("  %s\n", test.Name)
-			if test.Error != nil {
-				fmt.Printf("    %s: %v\n", test.Status, test.Error)
-			} else {
-				fmt.Printf("    %s\n", test.Status)
-			}
-		}
+		card.reports = append(card.reports, ReportData{
+			name: suite.Name,
+			tests: TestData{
+				passed: int64(suite.Totals.Passed),
+				failed: int64(suite.Totals.Failed),
+				errored: int64(suite.Totals.Error),
+				skipped: int64(suite.Totals.Skipped),
+				total: int64(suite.Totals.Tests),
+			},
+			time: suite.Totals.Duration.String(),
+		})
 	}
+
+	writeCard(args.Pipeline.Card.Path, "https://rohit-gohri.github.io/drone-junit/cards/v0Card.json", card)
 
 	return nil
 }
