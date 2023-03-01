@@ -47,7 +47,7 @@ Images are published on Github Container Registry - <https://github.com/rohit-go
 
 ### Docker Hub
 
-Images are also published on Github Container Registry - <https://github.com/rohit-gohri/drone-junit/pkgs/container/drone-junit>
+Images are also published on Docker Hub - <https://hub.docker.com/r/boringdownload/drone-junit>
 
 ```yaml
 - name: junit-reports
