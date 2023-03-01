@@ -10,6 +10,7 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+	"time"
 
 	"github.com/joshdk/go-junit"
 	"github.com/sirupsen/logrus"
@@ -22,6 +23,7 @@ type Args struct {
 	// Level defines the plugin log level.
 	Level string `envconfig:"PLUGIN_LOG_LEVEL"`
 
+	Total bool `envconfig:"PLUGIN_TOTAL" default:"true"`
 	PathsGlob string `envconfig:"PLUGIN_PATHS"`
 	ReportName string `envconfig:"PLUGIN_REPORT_NAME"`
 }
@@ -67,7 +69,21 @@ func Exec(ctx context.Context, args Args) error {
 	card.Name = args.ReportName
 	card.Reports = []ReportData{}
 
+	var passed int64 = 0
+	var failed int64 = 0
+	var errored int64 = 0
+	var skipped int64 = 0
+	var total int64 = 0
+	var time time.Duration = 0
+
 	for _, suite := range suites {
+		passed += int64(suite.Totals.Passed)
+		failed += int64(suite.Totals.Failed)
+		errored += int64(suite.Totals.Error)
+		total += int64(suite.Totals.Skipped)
+		passed += int64(suite.Totals.Tests)
+		time += suite.Totals.Duration
+
 		card.Reports = append(card.Reports, ReportData{
 			Name: suite.Name,
 			Tests: TestData{
@@ -81,7 +97,23 @@ func Exec(ctx context.Context, args Args) error {
 		})
 	}
 
-	writeCard(args.Pipeline.Card.Path, "https://rohit-gohri.github.io/drone-junit/cards/v0Card.json", card)
+	card.Total = ReportData{
+		Name: "Total",
+		Time: time.String(),
+		Tests: TestData{
+			Passed: passed,
+			Failed: failed,
+			Errored: errored,
+			Skipped: skipped,
+			Total: total,
+		},
+	}
+
+	if args.Total {
+		writeCard(args.Pipeline.Card.Path, "https://rohit-gohri.github.io/drone-junit/cards/v0Card.json", card)
+	} else {
+		writeCard(args.Pipeline.Card.Path, "https://rohit-gohri.github.io/drone-junit/cards/v0Card-total.json", card)
+	}
 
 	return nil
 }

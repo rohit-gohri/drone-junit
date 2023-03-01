@@ -11,6 +11,7 @@ The following settings changes this plugin's behavior.
 
 * paths (required) - Pass a glob pattern to match all xml junit files
 * report_name (optional) - Customize the name of the report
+* total (optional, default true) - Combine and show sum of all reports
 
 Below is an example `.drone.yml` that uses this plugin.
 
@@ -28,10 +29,31 @@ steps:
     - go test -v 2>&1 ./... | go-junit-report -set-exit-code > report.xml
 
 - name: junit-reports
+  image: ghcr.io/rohit-gohri/drone-junit:v0
+  settings:
+    paths: report.xml
+```
+
+### GHCR
+
+Images are published on Github Container Registry - <https://github.com/rohit-gohri/drone-junit/pkgs/container/drone-junit>
+
+```yaml
+- name: junit-reports
+  image: ghcr.io/rohit-gohri/drone-junit:v0
+  settings:
+    paths: report.xml
+```
+
+### Docker Hub
+
+Images are also published on Github Container Registry - <https://github.com/rohit-gohri/drone-junit/pkgs/container/drone-junit>
+
+```yaml
+- name: junit-reports
   image: boringdownload/drone-junit:v0
   settings:
     paths: report.xml
-    report_name: my-tests
 ```
 
 ## Development

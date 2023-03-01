@@ -1,25 +1,38 @@
 {
-  "name": "Wohoo",
+  "name": "drone-junit",
   "reports": [
     {
-      "name": "tt33",
+      "name": "src/__tests__/1.test.ts",
       "tests": {
         "failed": 2,
         "errored": 1,
         "skipped": 0,
-        "passed": 35
+        "passed": 35,
+        "total": 38
       },
       "time": "450ms"
     },
     {
-      "name": "114v",
+      "name": "src/__tests__/2.test.tsx",
       "tests": {
-        "failed": 1,
-        "errored": 4,
-        "skipped": 2,
-        "passed": 59
+        "failed": 0,
+        "errored": 0,
+        "skipped": 0,
+        "passed": 2,
+        "total": 2
       },
-      "time": "950ms"
+      "time": "354ms"
     }
-  ]
+  ],
+  "total": {
+    "name": "Total",
+    "tests": {
+      "failed": 2,
+      "errored": 1,
+      "skipped": 0,
+      "passed": 37,
+      "total": 40
+    },
+    "time": "804ms"
+  }
 }
