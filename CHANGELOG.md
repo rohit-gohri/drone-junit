@@ -1,5 +1,11 @@
 # drone-junit
 
+## 0.2.1
+
+### Patch Changes
+
+- 99ba157: Fix total option card url
+
 ## 0.2.0
 
 ### Minor Changes
