@@ -81,7 +81,7 @@
                 {
                   "type": "TextBlock",
                   "size": "Large",
-                  "text": "${formatNumber(tests.errors, 0)}",
+                  "text": "${formatNumber(tests.errored, 0)}",
                   "wrap": true,
                   "horizontalAlignment": "Center",
                   "spacing": "None",
