@@ -31,6 +31,7 @@ type ReportData struct {
 type CardData struct {
 	Name string `json:"name"`
 	Reports []ReportData `json:"reports"`
+	Total ReportData `json:"total"`
 }
 
 func writeCard(path, schema string, card CardData) {
