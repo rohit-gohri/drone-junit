@@ -74,7 +74,7 @@ func Exec(ctx context.Context, args Args) error {
 	var errored int64 = 0
 	var skipped int64 = 0
 	var total int64 = 0
-	var time time.Duration = 0
+	var totalTime time.Duration = 0
 
 	for _, suite := range suites {
 		passed += int64(suite.Totals.Passed)
@@ -82,7 +82,7 @@ func Exec(ctx context.Context, args Args) error {
 		errored += int64(suite.Totals.Error)
 		total += int64(suite.Totals.Skipped)
 		passed += int64(suite.Totals.Tests)
-		time += suite.Totals.Duration
+		totalTime += suite.Totals.Duration
 
 		card.Reports = append(card.Reports, ReportData{
 			Name: suite.Name,
@@ -93,13 +93,13 @@ func Exec(ctx context.Context, args Args) error {
 				Skipped: int64(suite.Totals.Skipped),
 				Total: int64(suite.Totals.Tests),
 			},
-			Time: suite.Totals.Duration.String(),
+			Time: suite.Totals.Duration.Round(1 * time.Millisecond).String(),
 		})
 	}
 
 	card.Total = ReportData{
 		Name: "Total",
-		Time: time.String(),
+		Time: totalTime.Round(1 * time.Millisecond).String(),
 		Tests: TestData{
 			Passed: passed,
 			Failed: failed,
