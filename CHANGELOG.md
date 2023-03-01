@@ -1,5 +1,11 @@
 # drone-junit
 
+## 0.2.2
+
+### Patch Changes
+
+- c7c6fec: Round off time duration
+
 ## 0.2.1
 
 ### Patch Changes

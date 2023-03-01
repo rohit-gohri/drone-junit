@@ -1,6 +1,6 @@
 {
   "name": "drone-junit",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Manage versioning via changesets",
   "main": "index.js",
   "repository": "https://github.com/rohit-gohri/drone-junit.git",
