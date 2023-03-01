@@ -29,10 +29,31 @@ steps:
     - go test -v 2>&1 ./... | go-junit-report -set-exit-code > report.xml
 
 - name: junit-reports
+  image: ghcr.io/rohit-gohri/drone-junit:v0
+  settings:
+    paths: report.xml
+```
+
+### GHCR
+
+Images are published on Github Container Registry - <https://github.com/rohit-gohri/drone-junit/pkgs/container/drone-junit>
+
+```yaml
+- name: junit-reports
+  image: ghcr.io/rohit-gohri/drone-junit:v0
+  settings:
+    paths: report.xml
+```
+
+### Docker Hub
+
+Images are also published on Github Container Registry - <https://github.com/rohit-gohri/drone-junit/pkgs/container/drone-junit>
+
+```yaml
+- name: junit-reports
   image: boringdownload/drone-junit:v0
   settings:
     paths: report.xml
-    report_name: my-tests
 ```
 
 ## Development
