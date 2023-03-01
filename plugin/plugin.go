@@ -110,9 +110,9 @@ func Exec(ctx context.Context, args Args) error {
 	}
 
 	if args.Total {
-		writeCard(args.Pipeline.Card.Path, "https://rohit-gohri.github.io/drone-junit/cards/v0Card.json", card)
-	} else {
 		writeCard(args.Pipeline.Card.Path, "https://rohit-gohri.github.io/drone-junit/cards/v0Card-total.json", card)
+	} else {
+		writeCard(args.Pipeline.Card.Path, "https://rohit-gohri.github.io/drone-junit/cards/v0Card.json", card)
 	}
 
 	return nil
