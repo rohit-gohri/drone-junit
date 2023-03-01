@@ -23,6 +23,7 @@ type Args struct {
 	// Level defines the plugin log level.
 	Level string `envconfig:"PLUGIN_LOG_LEVEL"`
 
+	Total bool `envconfig:"PLUGIN_TOTAL" default:"true"`
 	PathsGlob string `envconfig:"PLUGIN_PATHS"`
 	ReportName string `envconfig:"PLUGIN_REPORT_NAME"`
 }
@@ -108,7 +109,11 @@ func Exec(ctx context.Context, args Args) error {
 		},
 	}
 
-	writeCard(args.Pipeline.Card.Path, "https://rohit-gohri.github.io/drone-junit/cards/v0Card.json", card)
+	if args.Total {
+		writeCard(args.Pipeline.Card.Path, "https://rohit-gohri.github.io/drone-junit/cards/v0Card.json", card)
+	} else {
+		writeCard(args.Pipeline.Card.Path, "https://rohit-gohri.github.io/drone-junit/cards/v0Card-total.json", card)
+	}
 
 	return nil
 }

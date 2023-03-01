@@ -11,6 +11,7 @@ The following settings changes this plugin's behavior.
 
 * paths (required) - Pass a glob pattern to match all xml junit files
 * report_name (optional) - Customize the name of the report
+* total (optional, default true) - Combine and show sum of all reports
 
 Below is an example `.drone.yml` that uses this plugin.
 

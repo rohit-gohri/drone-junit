@@ -1,0 +1,172 @@
+{
+  "type": "AdaptiveCard",
+  "body": [
+    {
+      "type": "ColumnSet",
+      "columns": [
+        {
+          "type": "Column",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "📊",
+              "size": "ExtraLarge"
+            }
+          ],
+          "width": "auto"
+        },
+        {
+          "type": "Column",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "Plugin: Junit Reports",
+              "wrap": true,
+              "size": "Small",
+              "weight": "Bolder",
+              "isSubtle": false,
+              "spacing": "Small"
+            },
+            {
+              "type": "TextBlock",
+              "text": "Name: ${$root.name}",
+              "wrap": true,
+              "size": "Small",
+              "weight": "Lighter",
+              "isSubtle": true,
+              "spacing": "Small"
+            }
+          ],
+          "width": "stretch"
+        }
+      ],
+      "style": "default"
+    },
+    {
+      "type": "ColumnSet",
+      "columns": [
+        {
+          "type": "Column",
+          "separator": true,
+          "width": "stretch",
+          "items": [
+            {
+              "type": "TextBlock",
+              "size": "Large",
+              "text": "${formatNumber(total.tests.failed, 0)}",
+              "wrap": true,
+              "horizontalAlignment": "Center",
+              "spacing": "None",
+              "color": "Attention"
+            },
+            {
+              "type": "TextBlock",
+              "size": "Small",
+              "text": "Failed",
+              "wrap": true,
+              "horizontalAlignment": "Center"
+            }
+          ]
+        },
+        {
+          "type": "Column",
+          "separator": true,
+          "width": "stretch",
+          "items": [
+            {
+              "type": "TextBlock",
+              "size": "Large",
+              "text": "${formatNumber(total.tests.errored, 0)}",
+              "wrap": true,
+              "horizontalAlignment": "Center",
+              "spacing": "None",
+              "color": "Attention"
+            },
+            {
+              "type": "TextBlock",
+              "size": "Small",
+              "text": "Errors",
+              "wrap": true,
+              "horizontalAlignment": "Center"
+            }
+          ]
+        },
+        {
+          "type": "Column",
+          "width": "stretch",
+          "separator": true,
+          "spacing": "Medium",
+          "items": [
+            {
+              "type": "TextBlock",
+              "size": "Large",
+              "text": "${formatNumber(total.tests.skipped, 0)}",
+              "wrap": true,
+              "horizontalAlignment": "Center",
+              "spacing": "None",
+              "color": "Warning"
+            },
+            {
+              "type": "TextBlock",
+              "size": "Small",
+              "text": "Skipped",
+              "horizontalAlignment": "Center"
+            }
+          ]
+        },
+        {
+          "type": "Column",
+          "width": "stretch",
+          "separator": true,
+          "spacing": "Medium",
+          "items": [
+            {
+              "type": "TextBlock",
+              "size": "Large",
+              "text": "${formatNumber(total.tests.passed, 0)}",
+              "wrap": true,
+              "horizontalAlignment": "Center",
+              "spacing": "None",
+              "color": "Good"
+            },
+            {
+              "type": "TextBlock",
+              "size": "Small",
+              "text": "Passed",
+              "horizontalAlignment": "Center"
+            }
+          ]
+        },
+        {
+          "type": "Column",
+          "width": "stretch",
+          "separator": true,
+          "spacing": "Medium",
+          "items": [
+            {
+              "type": "TextBlock",
+              "size": "Large",
+              "text": "${total.time}",
+              "wrap": true,
+              "horizontalAlignment": "Center",
+              "spacing": "None",
+              "color": "Accent"
+            },
+            {
+              "type": "TextBlock",
+              "size": "Small",
+              "text": "Time",
+              "horizontalAlignment": "Center"
+            }
+          ]
+        }
+      ],
+      "style": "default",
+      "separator": true,
+      "bleed": true,
+      "spacing": "None"
+    }
+  ],
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.5"
+}
