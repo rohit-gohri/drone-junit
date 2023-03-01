@@ -21,7 +21,7 @@
             {
               "type": "TextBlock",
               "text": "Plugin: Junit Reports",
-              "wrap": false,
+              "wrap": true,
               "size": "Small",
               "weight": "Bolder",
               "isSubtle": false,
@@ -30,7 +30,7 @@
             {
               "type": "TextBlock",
               "text": "Name: ${$root.name}",
-              "wrap": false,
+              "wrap": true,
               "size": "Small",
               "weight": "Lighter",
               "isSubtle": true,
@@ -54,7 +54,7 @@
               "type": "TextBlock",
               "size": "Large",
               "text": "${formatNumber(total.tests.failed, 0)}",
-              "wrap": false,
+              "wrap": true,
               "horizontalAlignment": "Center",
               "spacing": "None",
               "color": "Attention"
@@ -63,7 +63,7 @@
               "type": "TextBlock",
               "size": "Small",
               "text": "Failed",
-              "wrap": false,
+              "wrap": true,
               "horizontalAlignment": "Center"
             }
           ],
@@ -78,7 +78,7 @@
               "type": "TextBlock",
               "size": "Large",
               "text": "${formatNumber(total.tests.errored, 0)}",
-              "wrap": false,
+              "wrap": true,
               "horizontalAlignment": "Center",
               "spacing": "None",
               "color": "Attention"
@@ -87,7 +87,7 @@
               "type": "TextBlock",
               "size": "Small",
               "text": "Errors",
-              "wrap": false,
+              "wrap": true,
               "horizontalAlignment": "Center"
             }
           ]
@@ -102,7 +102,7 @@
               "type": "TextBlock",
               "size": "Large",
               "text": "${formatNumber(total.tests.skipped, 0)}",
-              "wrap": false,
+              "wrap": true,
               "horizontalAlignment": "Center",
               "spacing": "None",
               "color": "Warning"
@@ -111,7 +111,7 @@
               "type": "TextBlock",
               "size": "Small",
               "text": "Skipped",
-              "wrap": false,
+              "wrap": true,
               "horizontalAlignment": "Center"
             }
           ]
@@ -126,7 +126,7 @@
               "type": "TextBlock",
               "size": "Large",
               "text": "${formatNumber(total.tests.passed, 0)}",
-              "wrap": false,
+              "wrap": true,
               "horizontalAlignment": "Center",
               "spacing": "None",
               "color": "Good"
@@ -135,7 +135,7 @@
               "type": "TextBlock",
               "size": "Small",
               "text": "Passed",
-              "wrap": false,
+              "wrap": true,
               "horizontalAlignment": "Center"
             }
           ]
@@ -150,7 +150,7 @@
               "type": "TextBlock",
               "size": "Large",
               "text": "${total.time}",
-              "wrap": false,
+              "wrap": true,
               "horizontalAlignment": "Center",
               "spacing": "None",
               "color": "Accent"
@@ -159,7 +159,7 @@
               "type": "TextBlock",
               "size": "Small",
               "text": "Time",
-              "wrap": false,
+              "wrap": true,
               "horizontalAlignment": "Center"
             }
           ]
