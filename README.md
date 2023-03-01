@@ -5,6 +5,8 @@
 
 A Drone plugin to parse Junit test reports and create tests summary using [plugin cards](https://docs.drone.io/plugins/adaptive_cards/).
 
+![Preview of junit report](./docs/image.jpg)
+
 ## Usage
 
 The following settings changes this plugin's behavior.
