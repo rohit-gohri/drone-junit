@@ -1,5 +1,11 @@
 # drone-junit
 
+## 0.2.0
+
+### Minor Changes
+
+- 11a2e57: Add support for showing total result only
+
 ## 0.1.0
 
 ### Minor Changes
