@@ -34,6 +34,11 @@ steps:
   image: ghcr.io/rohit-gohri/drone-junit:v0
   settings:
     paths: report.xml
+  when:
+    status: [
+      'success',
+      'failure',
+    ]
 ```
 
 ### GHCR
