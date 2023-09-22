@@ -45,6 +45,11 @@ Images are published on Github Container Registry - <https://github.com/rohit-go
   image: ghcr.io/rohit-gohri/drone-junit:v0
   settings:
     paths: report.xml
+  when:
+    status: [
+      'success',
+      'failure',
+    ]
 ```
 
 ### Docker Hub
